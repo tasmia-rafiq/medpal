@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import "tailwindcss";
+
+:root {
+  --radius: 0.5rem;
+  --font-poppins: "Poppins", sans-serif;
+  --primary: #020012;
+  --primary-100: #ceebff;
+  --secondary: #4eb9ff;
+  --black-100: #333333;
+  --black-200: #141413;
+  --black-300: #7d8087;
+  --black: #000000;
+  --white-100: #f7f7f7;
+  --white: #ffffff;
+}
+
+@theme {
+  /* COLORS */
+  --color-primary: var(--primary);
+  --color-primary-100: var(--primary-100);
+  --color-secondary: var(--secondary);
+  --color-black-100: var(--black-100);
+  --color-black-200: var(--black-200);
+  --color-black-300: var(--black-300);
+  --color-black: var(--black);
+  --color-white-100: var(--white-100);
+  --color-white: var(--white);
+
+  /* FONT FAMILY */
+  --font-poppins: var(--font-poppins);
+
+  /* BORDER RADIUS */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Box Shadows */
+  --shadow-100: 2px 2px 0px 0px rgb(0, 0, 0);
+  --shadow-200: 2px 2px 0px 2px rgb(0, 0, 0);
+  --shadow-300: 4px 4px 0px 4px var(--color-secondary);
+}
+
+body {
+  @apply font-poppins;
+}
+
+@layer utilities {
+  .file-input {
+    @apply file:bg-secondary file:text-white file:border-0 file:px-4 file:py-2 file:rounded-lg cursor-pointer;
+  }
+}
