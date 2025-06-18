@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import SessionProvider from "@/components/SessionProvider";
+import Header from "@/components/Header";
 
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
@@ -9,8 +11,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "MedPal",
-  description: "Your AI-powered medical companion",
+  title: "MedPal - Your AI-powered Medical Companion",
+  description: "Upload, manage, and organize your medical reports with AI-powered text extraction",
 };
 
 export default function RootLayout({
@@ -20,10 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={poppins.variable}
-      >
-        {children}
+      <body className={poppins.variable}>
+        <SessionProvider>
+          <Header />
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );
