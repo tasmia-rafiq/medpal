@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { Upload, FileText, Loader2, Save, X } from 'lucide-react';
-import { saveReport } from '@/lib/reports';
 import { useRouter } from 'next/navigation';
 
 const OcrReader = () => {
@@ -73,13 +72,23 @@ const OcrReader = () => {
 
     setIsSaving(true);
     try {
-      await saveReport({
-        userId: session.user?.id || '',
-        title: reportTitle.trim(),
-        extractedText: ocrResult,
-        category: 'General',
-        tags: [],
+      const response = await fetch('/api/reports', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: session.user?.id || '',
+          title: reportTitle.trim(),
+          extractedText: ocrResult,
+          category: 'General',
+          tags: [],
+        }),
       });
+
+      if (!response.ok) {
+        throw new Error('Failed to save report');
+      }
 
       setShowSaveDialog(false);
       setOcrResult('');
